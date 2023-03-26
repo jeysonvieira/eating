@@ -40,8 +40,6 @@ const checktoken = async (req: Request, res: Response, next: NextFunction) => {
 
                 req.user = verified
 
-                console.log(req.user)
-
                 next()
             }
         } catch (err) {

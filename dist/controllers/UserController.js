@@ -99,8 +99,6 @@ const UserController = class {
                 return;
             }
             const descript = bcryptjs_1.default.compareSync(password, checkemail.password);
-            console.log(descript);
-            console.log('oiii');
             if (!descript) {
                 res.status(422).json({
                     msg: "Senha incorreta."

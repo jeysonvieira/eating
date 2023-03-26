@@ -31,7 +31,6 @@ const checktoken = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
     if (typeof (token) == "string") {
         try {
             const verified = jsonwebtoken_1.default.verify(token, "nossosecret");
-            console.log(typeof (verified));
             if (typeof (verified) == "object") {
                 req.user = verified;
                 console.log(req.user);
