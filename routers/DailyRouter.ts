@@ -6,6 +6,7 @@ const AlimentsRouter = express.Router()
 
 
 AlimentsRouter.post('/add', checktoken, AlimentsController.addAliment)
+AlimentsRouter.get('/clear', checktoken, AlimentsController.ClearDaily)
 
 
 

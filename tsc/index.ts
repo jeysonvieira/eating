@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import UserRouter from '../routers/UserRouter'
-import AlimentsRouter from '../routers/DaileRouter'
+import AlimentsRouter from '../routers/DailyRouter'
 
 const app = express()
 

@@ -41,7 +41,7 @@ const DialyTable = {
 }
 
 
-const DilyAliment = mongoose.model('DialyAliments', new Schema(DialyTable, {timestamps : true}))
+const DailyAliment = mongoose.model('DailyAliments', new Schema(DialyTable, {timestamps : true}))
 
 
-export default DilyAliment ;
+export default DailyAliment ;
