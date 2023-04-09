@@ -1,5 +1,5 @@
 import jwt, { sign } from 'jsonwebtoken'
-import { Request, Response } from 'express'
+import { Request, Response, json } from 'express'
 import mongoose from 'mongoose'
 
 interface IUser {

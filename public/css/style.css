@@ -1,0 +1,107 @@
+body {
+    margin: 0px;
+    padding: 0px;
+
+    font-family: 'Mulish', sans-serif;
+
+}
+
+.nav-bar {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    color: aliceblue;
+    background-color: black;
+    padding: 0px 25px 0px 25px;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.nav-logado {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: end;
+
+}
+
+.nav-logado a {
+    margin-right: 10px;
+}
+
+.button {
+    height: 30px;
+    font-size: 1em;
+}
+
+#button-signup {
+    margin-right: 10px;
+}
+
+.body {
+    height: 80vh;
+}
+
+.footer {
+    background-color: black;
+    height: 65px;
+}
+
+.copy {
+    text-align: center;
+    font-size: 1.3em;
+    color: aliceblue;
+}
+
+.div-form {
+    width: 450px;
+    height: 500px;
+    border: 1px solid black;
+    box-shadow: 3px 3px 12px black;
+    border-radius: 10px;
+    margin: 30px auto 0px auto;
+
+}
+
+.login-txt {
+    text-align: center;
+    font-weight: bolder;
+
+}
+
+.form-box,
+.form-submit,
+.semconta {
+    text-align: center;
+}
+
+.form-box label {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.form-box2 label,
+.form-submit input {
+    margin-top: 10px;
+}
+
+
+
+.form-box input {
+    width: 90%;
+    height: 30px;
+}
+
+.form-submit,
+.login-txt {
+    margin: 10px auto 10px auto;
+    text-align: center;
+}
+
+.form-submit input {
+    width: 100px;
+    height: 30px;
+}

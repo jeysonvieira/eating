@@ -145,10 +145,15 @@ const UserController = class {
 
     static async Login(req: Request, res: Response) {
 
-        const { email, password }: IdadosLogin = req.body
+        //const { email, password }: IdadosLogin = req.body
 
+        const email = req.body.email
+        const password = req.body.password
+        console.log(email, password)
 
         const checkemail: { password: string, name: string, _id: mongoose.Types.ObjectId } = await User.findOne({ email: email }).lean()
+
+        
 
         if (!checkemail) {
             res.status(422).json({
@@ -173,10 +178,14 @@ const UserController = class {
 
         await createToken(checkemail.name, checkemail._id, req, res)
 
-
     }
 
-
+    static async LoginGet(req: Request, res: Response) {
+        res.render('login')
+    }
+    static async SignUp(req: Request, res: Response) {
+        res.render('signup')
+    }
 
 }
 

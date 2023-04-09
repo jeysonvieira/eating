@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@1,400;1,600&family=Quicksand:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Dieta Diária</title>
+</head>
+
+<body>
+
+    <div class="nav-bar">
+
+        <div class="logo">
+
+            <a href="">
+                <h1>Dieta Diária</h1>
+            </a>
+
+        </div>
+
+        <div class="nav">
+
+
+            {{#if user.id}}
+
+            <div class="nav-logado">
+                <a href=""><button class="button">Refeições Semanal</button></a>
+                <form action="/users/logout" method="post">
+                    <input type="hidden" name="leave">
+                    <input type="submit" value="Sair" class="button">
+
+                </form>
+            </div>
+
+
+            {{else}}
+
+            <a href="/users/signup"><button class="button" id="button-signup">Cadastrar-se</button></a>
+
+            <a href="/users/login"><button class="button">Entar</button></a>
+
+            {{/if}}
+
+        </div>
+
+
+    </div>
+
+
+    <div class="box-msg">
+
+        {{#if res.msg}}
+
+        <div class="message">
+            <p>{{res.msg}}</p>
+        </div>
+
+        {{/if}}
+
+
+    </div>
+
+
+    <div class="body">{{{body}}}</div>
+
+
+
+    <div class="footer">
+
+        <div class="copy">
+
+            <p>&copy Criado por Jeyson vieira</p>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

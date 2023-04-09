@@ -62,7 +62,7 @@ const AlimentsController = class {
             }
         }
 
-        
+
         const user = await UserByToken(req)
 
         const owner = user?.id
@@ -91,29 +91,35 @@ const AlimentsController = class {
 
             const day_num = response.data.day_of_week
 
-            const array_week = ["Domingo","Segunda", "Terça", "Quarta","Quinta","Sexta","Sábado"]
+            const array_week = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
 
             return array_week[day_num]
-            
+
         });
 
         const userT = await UserByToken(req)
 
-        if(userT?.id){
+        if (userT?.id) {
 
-            const DialyRefs = await DailyAliment.find({owner : userT.id}).select("-_id -owner -createdAt -updatedAt -__v")
+            const DialyRefs = await DailyAliment.find({ owner: userT.id }).select("-_id -owner -createdAt -updatedAt -__v")
 
-            const Ref = await new WeekAliment({day : day_week, meal : DialyRefs, owner : userT.id}).save()
+            const Ref = await new WeekAliment({ day: day_week, meal: DialyRefs, owner: userT.id }).save()
 
-            await DailyAliment.deleteMany({owner : userT.id})
+            await DailyAliment.deleteMany({ owner: userT.id })
 
             res.status(201).json({
-                msg : "Tabela diária limpa, se alimente bem!"
+                msg: "Tabela diária limpa, se alimente bem!"
             })
-        } else{
+        } else {
             console.log("Error ao procurar seu ID.")
             return
         }
+
+    }
+
+    static async Index(req : Request, res : Response){
+        
+        res.render('/index')
 
     }
 
