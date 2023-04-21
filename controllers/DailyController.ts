@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 import UserByToken from "../helpers/take-user-by-token";
 import fs from 'fs'
 import axios from 'axios'
+import User from "../models/Users";
 
 
 
@@ -117,8 +118,33 @@ const AlimentsController = class {
 
     }
 
-    static async Index(req : Request, res : Response){
-        
+    static async ReturnWeek(req: Request, res: Response) {
+
+        interface IUser {
+            name: string,
+            id: string,
+            iat: number
+        }
+
+
+        const id: IUser = req.user
+
+        const Weektable = await WeekAliment.find({ owner: id.id }).select('-_id day meal')
+
+        res.status(200).json({
+            msg: "Aqui está a tabela da semana!",
+            tabela: Weektable[0]
+
+        })
+
+    }
+
+
+
+
+
+    static async Index(req: Request, res: Response) {
+
         res.render('/index')
 
     }
