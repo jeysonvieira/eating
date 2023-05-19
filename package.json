@@ -8,7 +8,7 @@
     "start": "ts-node-dev --respawn --transpile-only tsc/index.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jeyson Vieira",
   "license": "ISC",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
