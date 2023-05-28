@@ -18,7 +18,7 @@
 - [x] Cadastro das Refeições Diárias com os Macros Calculados.
 - [x] Cadastro das Refeições Semanais de Acordo com a Data da API.
 - [x] Autenticação com JWT.
-- [ ] Cadastro de Alimentos com Valores dos Macros no JSON.
+- [x] Cadastro de Alimentos com Valores dos Macros no JSON.
 
 ## 🎲 Rodando o Back End (servidor)
 ```bash
