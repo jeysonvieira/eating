@@ -36,7 +36,7 @@ const AlimentsController = class {
         const file = fs.readFileSync('fruit.json', 'utf-8')
 
 
-        const fileJson: object = JSON.parse(file)
+        const fileJson: object = JSON.parse(file) // Objeto com todos dados do JSON.
 
 
         var Alimentos: [] = []
@@ -139,8 +139,69 @@ const AlimentsController = class {
 
     }
 
+    static async WriteJSON(req: Request, res: Response) {
+
+        interface IMacro {
+            carbo: number,
+            prot: number,
+            fat: number
+        }
+
+        var name: string = req.body.name
+        name = name.toLowerCase()
+
+        const macros: IMacro = req.body.macros
+
+        const Arquivo = fs.readFileSync('fruit.json', 'utf-8') // Lendo o arquivo JSON
+
+        const JSONObj = JSON.parse(Arquivo)
+
+        const id = Object.keys(JSONObj).length + 1
+
+        const Alimento = {
+            [name]: {
+                id: id,
+                carbo: macros.carbo,
+                prot: macros.prot,
+                fat: macros.fat
+            }
+        }
+
+        // CONVERTENDO TUDO PARA STRING E MANIPULANDO NO FORMATO DE UM JSON.
+
+        const AlimentoString = JSON.stringify(Alimento)
+
+        const Length = Arquivo.length - 1
+
+        const Copyjson = Arquivo.slice(0, Length) // -> Cópiando todo o arquivo já escrito, com excessão do ultimo fecha chaves.
 
 
+        // Concatenação do arquivo já escrito com os novos dados que serão adicionados no JSON.
+
+        const TT = Copyjson + "," + `"${name}" : {
+        "id" : ${Alimento[name]["id"]},
+        "carbo" : ${Alimento[name]["carbo"]},
+        "prot" : ${Alimento[name]["prot"]},
+        "fat" : ${Alimento[name]["fat"]} 
+        }
+        }`
+
+        const ArquivoJSON = JSON.stringify(TT)
+
+        // Delete e Create do novo arquivo JSON.
+
+        await fs.unlink("fruit.json", (err) => {
+            console.log(err)
+        })
+
+        await fs.writeFileSync("fruit.json", TT)
+
+        res.status(201).json({
+            msg : "Objeto adicionado com sucesso.",
+            obj : Alimento
+        })
+
+    }
 
 
     static async Index(req: Request, res: Response) {
