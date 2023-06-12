@@ -32,13 +32,23 @@ const checktoken = async (req: Request, res: Response, next: NextFunction) => {
     if (typeof (token) == "string") {
 
         try {
+            interface IT{
+                name : string,
+                id : string,
+                iat : number | undefined
+            }
 
-            const verified : string | JwtPayload | object = jwt.verify(token, "nossosecret")
-
+            const verified : string | JwtPayload | IT = jwt.verify(token, "nossosecret")
 
             if(typeof(verified) == "object"){
 
-                req.user = verified
+                const UserValues : IT = {
+                    name : verified.name,
+                    id : verified.id,
+                    iat : verified.iat
+                }
+                
+                req.user = UserValues
 
                 next()
             }

@@ -12,38 +12,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const get_token_1 = __importDefault(require("./get-token"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const checktoken = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!req.headers.authorization) {
-        res.status(401).json({
-            msg: "você não está logado no sistema."
-        });
-        return;
-    }
-    const token = (0, get_token_1.default)(req);
-    if (typeof (token) == "boolean") {
-        res.status(400).json({
-            message: "Acesso negado!"
-        });
-        return;
-    }
+const get_token_1 = __importDefault(require("./get-token"));
+const Users_1 = __importDefault(require("../models/Users"));
+const UserByToken = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    var token = (0, get_token_1.default)(req);
     if (typeof (token) == "string") {
-        try {
-            const verified = jsonwebtoken_1.default.verify(token, "nossosecret");
-            if (typeof (verified) == "object") {
-                const UserValues = {
-                    name: verified.name,
-                    id: verified.id,
-                    iat: verified.iat
-                };
-                req.user = UserValues;
-                next();
-            }
-        }
-        catch (err) {
-            console.log(err);
+        const dados = jsonwebtoken_1.default.verify(token, "nossosecret");
+        if (typeof (dados) != "string") {
+            const id = dados.id;
+            const user = yield Users_1.default.findOne({ _id: id }).select("-password");
+            return user;
         }
     }
 });
-exports.default = checktoken;
+exports.default = UserByToken;

@@ -123,7 +123,7 @@ const AlimentsController = class {
         interface IUser {
             name: string,
             id: string,
-            iat: number
+            iat: number | undefined
         }
 
 
@@ -197,8 +197,8 @@ const AlimentsController = class {
         await fs.writeFileSync("fruit.json", TT)
 
         res.status(201).json({
-            msg : "Objeto adicionado com sucesso.",
-            obj : Alimento
+            msg: "Objeto adicionado com sucesso.",
+            obj: Alimento
         })
 
     }

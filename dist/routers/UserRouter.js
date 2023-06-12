@@ -8,4 +8,6 @@ const UserController_1 = __importDefault(require("../controllers/UserController"
 const UserRouter = express_1.default.Router();
 UserRouter.post('/signup', UserController_1.default.Signup);
 UserRouter.post('/login', UserController_1.default.Login);
+UserRouter.get('/login', UserController_1.default.LoginGet);
+UserRouter.get('/signup', UserController_1.default.SignUp);
 exports.default = UserRouter;

@@ -90,7 +90,10 @@ const UserController = class {
     }
     static Login(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { email, password } = req.body;
+            //const { email, password }: IdadosLogin = req.body
+            const email = req.body.email;
+            const password = req.body.password;
+            console.log(email, password);
             const checkemail = yield Users_1.default.findOne({ email: email }).lean();
             if (!checkemail) {
                 res.status(422).json({
@@ -106,6 +109,16 @@ const UserController = class {
                 return;
             }
             yield (0, create_token_1.default)(checkemail.name, checkemail._id, req, res);
+        });
+    }
+    static LoginGet(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            res.render('login');
+        });
+    }
+    static SignUp(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            res.render('signup');
         });
     }
 };
